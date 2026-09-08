@@ -4,11 +4,11 @@
 
 ## Current stage
 
-Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation has passed independent correctness and source/user-risk review with no unresolved P0/P1/P2 findings. Licensing claims remain unapproved and non-routable.
+Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review with no unresolved P0/P1/P2 findings and is pushed to GitHub at `f18c7bd923e975801a7e2c2b4ad7c41966be15e6`. Licensing claims remain unapproved and non-routable.
 
 ## Current gate
 
-The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, empty, grants this account push/admin access, and uses `main` as its default branch. The approved local foundation candidate has no upstream. Delivery policy prohibits feature implementation until it is pushed and its remote SHA verified.
+The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants this account push/admin access, and uses `main` as its default branch. Local and remote `main` were verified at the exact foundation SHA `f18c7bd923e975801a7e2c2b4ad7c41966be15e6`.
 
 ## Decisions
 
@@ -19,7 +19,7 @@ The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, empty, gra
 
 ## Next action
 
-Amend the foundation commit with the approved candidate, push `main`, verify the remote SHA, then start BL-001.
+Begin BL-001 on a bounded branch: establish the independent source-backed oracle, scenario/recruitment protocol, and official-resource baseline. Representative-user measurements and qualified review remain human gates.
 
 ## Human review queue
 

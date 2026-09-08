@@ -6,7 +6,7 @@ The application is navigation support, not a licensing decision. Only the releva
 
 ## Current status
 
-Stage 0 discovery supports a cautious **GO** for a bounded V1 covering RN/LPN, mental health counselor, electrician, and real estate salesperson/broker. The public GitHub repository is verified as empty with `main` as its default branch. Stage 1 repository foundation is committed locally but not yet pushed; feature work remains blocked until synchronization.
+Stage 0 discovery supports a cautious **GO** for a bounded V1 covering RN/LPN, mental health counselor, electrician, and real estate salesperson/broker. The reviewed Stage 1 foundation is synchronized to the public GitHub `main` branch at commit `f18c7bd`. BL-001 evaluation-oracle and baseline work is next; observed licensing claims remain non-routable pending approval.
 
 See [PROJECT_STATE.md](docs/PROJECT_STATE.md), [PRODUCT.md](docs/PRODUCT.md), and [SOURCE_PROVENANCE.md](docs/SOURCE_PROVENANCE.md).
 
