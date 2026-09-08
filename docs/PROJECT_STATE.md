@@ -1,14 +1,14 @@
 # Project state
 
-**Updated:** 2026-09-07
+**Updated:** 2026-09-08
 
 ## Current stage
 
-Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review with no unresolved P0/P1/P2 findings and is pushed to GitHub at `f18c7bd923e975801a7e2c2b4ad7c41966be15e6`. Licensing claims remain unapproved and non-routable.
+Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review and is synchronized to GitHub. The BL-001 protocol candidate passed both independent reviews with no unresolved P0/P1/P2 findings on `bl-001-evaluation-oracle`. Licensing claims remain unapproved and non-routable.
 
 ## Current gate
 
-The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants this account push/admin access, and uses `main` as its default branch. Local and remote `main` were verified at the exact foundation SHA `f18c7bd923e975801a7e2c2b4ad7c41966be15e6`.
+The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants this account push/admin access, and uses `main` as its default branch. Foundation delivery was recorded on `main` at `833af63`. BL-001 cannot complete without qualified human evaluation-oracle/source review, evaluation-methods approval, and representative-user baseline sessions. Evaluation-only evidence cannot activate product routing.
 
 ## Decisions
 
@@ -19,7 +19,7 @@ The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants thi
 
 ## Next action
 
-Begin BL-001 on a bounded branch: establish the independent source-backed oracle, scenario/recruitment protocol, and official-resource baseline. Representative-user measurements and qualified review remain human gates.
+Push the reviewed BL-001 protocol candidate. Then obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before feature implementation. Product claim/conflict approval remains BL-004.
 
 ## Human review queue
 

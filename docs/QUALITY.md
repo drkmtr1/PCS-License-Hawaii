@@ -17,7 +17,7 @@
 
 ## Evaluation set
 
-Before implementation, an independent source reviewer establishes the source-backed oracle, scenario allocation, recruitment minima, subgroup pass/escalation rules, and baseline. The protocol must include all profession/route/military-relationship groups and users facing screen-reader/keyboard, limited-English or low-literacy, weak-connectivity, small-screen, and PDF-access barriers. If a group cannot be recruited at the protocol's minimum, document the exclusion and prohibit broad usability/accessibility claims for that group. Before release, run ordinary routes, military-spouse routes, federal portability review, missing answers, stale/dead sources, conflict, and unsupported professions. Each case declares claim IDs, allowed pathways, required escalation, and forbidden authorization claims. Baseline and product tasks are counterbalanced and adjudicated independently.
+Before implementation, an independent source reviewer establishes the source-backed evaluation oracle, scenario allocation, recruitment minima, subgroup pass/escalation rules, and baseline. The protocol must include all profession/route/military-relationship groups and users facing screen-reader/keyboard, limited-English or low-literacy, weak-connectivity, small-screen, and PDF-access barriers. If a group cannot be recruited at the protocol's minimum, document the exclusion and prohibit broad usability/accessibility claims for that group. Before release, run ordinary routes, military-spouse routes, federal portability review, missing answers, stale/dead sources, conflict, and unsupported professions. Each case declares expected evidence, allowed pathways, required escalation, and forbidden authorization claims. BL-001 uses a baseline-only cohort; BL-007 uses a fresh randomized parallel cohort with matched scenario variants and independent adjudication.
 
 ## Release thresholds
 
@@ -25,7 +25,7 @@ Before implementation, an independent source reviewer establishes the source-bac
 - 100% correct safety-critical pathway/source assertions on approved cases, with no failing profession or route.
 - 100% correct abstention for known conflicts and insufficient evidence.
 - Zero claims that the application has granted authority to practice.
-- At least 95% task completion overall and within each adequately sampled required subgroup; any subgroup below threshold blocks the corresponding usability claim and triggers remediation or explicit scope limitation. Report sample size, time, and confusion separately.
+- At least 95% reach the correct next official source within five minutes overall and within each adequately sampled required subgroup. Full task completion within 10 minutes is secondary. Any subgroup below the primary threshold blocks the corresponding usability claim and triggers remediation or explicit scope limitation. Report denominator, confidence interval, sample size, time, and confusion.
 - No unresolved critical/high defect.
 
 Tests may be corrected when the requirement/evidence is wrong; they may not be weakened to accommodate an implementation failure.

@@ -32,4 +32,4 @@ Accounts, saved cases, document upload, application submission, eligibility dete
 
 ## Success hypothesis
 
-On approved representative scenarios, 100% of safety-critical pathway/source assertions are correct, 100% of cases outside approved evidence abstain, and no result claims the application authorized practice. The usability hypothesis is at least 95% task completion with the next official source reached in under five minutes; results must also be reported by profession, route, and military relationship.
+On approved representative scenarios, 100% of safety-critical pathway/source assertions are correct, 100% of cases outside approved evidence abstain, and no result claims the application authorized practice. The primary usability hypothesis is that at least 95% reach the correct next official source within five minutes overall and per adequately sampled required subgroup; full task completion within 10 minutes is secondary. Report by profession, route, and military relationship.
