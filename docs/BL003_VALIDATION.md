@@ -14,6 +14,8 @@
 
 `src/evidence/drafts.ts` prepares only `observed` claims for a later human-review queue by changing their state to `needs-human-review` and removing approval-only fields. It preserves source, locator, evidence, applicability, profession, conflict, and review-window data; dead or otherwise non-observed claims are unchanged. It never creates an approved claim or routing input.
 
+`src/evidence/review-queue.ts` creates a stable, sorted manifest of non-terminal draft claims with their recorded source/conflict IDs, states, professions, review dates, and open-conflict flags. It is a work queue only; it cannot approve, interpret, or route a claim.
+
 ## Requirement and acceptance mapping
 
 | Requirement | Implementation/evidence |
