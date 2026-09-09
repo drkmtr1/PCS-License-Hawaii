@@ -23,7 +23,7 @@ Credential-free neutral work continues without waiting for human approval: UI sc
 
 ## Next action
 
-Continue credential-free neutral implementation on the continuous build track. BL-004 draft preparation and review-queue manifests may continue, but they cannot activate product claims until qualified human source/claim review approves initial locators, conflict disposition, fallback copy, and expiries. Do not start participant sessions, activate routing, or make usability/performance claims. Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before BL-007/BL-008/release.
+Continue credential-free neutral implementation on the continuous build track. BL-004 draft preparation, review-queue manifests, and evidence-preserving review packets may continue, but they cannot activate product claims until qualified human source/claim review approves initial locators, conflict disposition, fallback copy, and expiries. Do not start participant sessions, activate routing, or make usability/performance claims. Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before BL-007/BL-008/release.
 
 ## Human review queue
 
