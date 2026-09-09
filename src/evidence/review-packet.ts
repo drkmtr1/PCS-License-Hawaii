@@ -15,6 +15,15 @@ export interface ClaimReviewPacket {
 }
 
 /**
+ * Serializes a review packet for a version-controlled handoff artifact.
+ * JSON output is stable because packet records are already sorted and fields are
+ * constructed in a fixed order. This is serialization only, never approval data.
+ */
+export function serializeClaimReviewPacket(packet: ClaimReviewPacket): string {
+  return `${JSON.stringify(packet, null, 2)}\n`;
+}
+
+/**
  * Creates a deterministic, evidence-preserving packet for qualified human review.
  * It does not interpret source authority, approve claims, or activate routing.
  */
