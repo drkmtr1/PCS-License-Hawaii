@@ -11,8 +11,8 @@ Runtime AI is also not justified for V1. Plain-language copy can be human-review
 ## Logical components
 
 1. BL-002 neutral accessible shell; the future questionnaire UI remains gated by approved claims and routing work.
-2. Validated source registry.
-3. Validated deterministic rules.
+2. Validated source/claim/conflict registry (BL-003); observed records are non-routable until BL-004 approval.
+3. Validated deterministic rules (BL-003 integrity only; routing implementation is later work).
 4. Pure routing function returning structured navigation results.
 5. Result renderer with citations, freshness/conflict states, and authority escalation.
 6. Build-time integrity checks and automated tests.
@@ -22,6 +22,8 @@ Runtime AI is also not justified for V1. Plain-language copy can be human-review
 ## BL-002 implementation boundary
 
 The initial Next.js App Router implementation is a static server-rendered shell with TypeScript, no runtime data store, no client state, no external links, and no routing behavior. It communicates only that the prototype is unavailable and cannot provide licensing advice or determine authorization. The CI contract runs typecheck, lint, policy tests, production dependency audit, and a production build. Source registries, claims, rules, contacts, questionnaire decisions, and result pathways are intentionally absent until their approved backlog items are eligible.
+
+BL-003 adds an isolated, version-controlled evidence registry and validator. It enforces atomic source/claim/conflict references, HTTPS canonical URLs on the approved-host allowlist, freshness/applicability/terminal dates, approval evidence and expiry, conflict blocking, and rule expiry bounds. The application shell does not import this registry; an observed or evaluation-only record never activates routing.
 
 ## Data boundaries
 

@@ -9,8 +9,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "validate:evidence": "vitest run tests/evidence-validation.test.ts",
     "audit:production": "npm audit --omit=dev --audit-level=high",
-    "check": "npm run typecheck && npm run lint && npm test && npm run audit:production && npm run build"
+    "check": "npm run typecheck && npm run lint && npm run validate:evidence && npm test && npm run audit:production && npm run build"
   },
   "dependencies": {
     "next": "^16.3.4",

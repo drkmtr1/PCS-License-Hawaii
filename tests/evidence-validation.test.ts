@@ -1,0 +1,229 @@
+import { describe, expect, it } from "vitest";
+import { conflicts, observedEvidence } from "../src/evidence/registry";
+import { EvidenceValidationError, validateEvidence } from "../src/evidence/validation";
+import type { ClaimRecord, ConflictRecord, EvidenceBundle, RuleRecord, SourceRecord } from "../src/evidence/schema";
+
+const at = new Date("2026-09-08T00:00:00Z");
+
+function validApprovedBundle(): EvidenceBundle {
+  const source: SourceRecord = {
+    sourceId: "SRC-1",
+    authority: "Example authority",
+    title: "Example source",
+    canonicalUrl: "https://cca.hawaii.gov/example",
+    sourceType: "agency-instructions",
+    professions: ["all"],
+    jurisdiction: "Example",
+    retrievedAt: "2026-09-01T00:00:00Z",
+    retrievalMethod: "live page review",
+    format: "html",
+    accessibility: "HTML",
+    fingerprint: "fingerprint-1",
+    state: "approved",
+    nextReviewAt: "2026-12-01T00:00:00Z",
+    owner: "review lead",
+  };
+  const claim: ClaimRecord = {
+    claimId: "CLM-1",
+    sourceId: source.sourceId,
+    proposition: "One atomic proposition.",
+    locator: "Heading 1",
+    evidence: "One short evidence passage.",
+    applicability: "Example only",
+    affectedProfessions: ["all"],
+    state: "approved",
+    conflictIds: [],
+    reviewer: { reviewerId: "reviewer-1", qualification: "qualified reviewer", reviewedAt: "2026-09-02T00:00:00Z", evidence: "review record" },
+    expiresAt: "2026-11-01T00:00:00Z",
+  };
+  const rule: RuleRecord = { ruleId: "RULE-1", claimIds: [claim.claimId], enabled: true, expiresAt: "2026-10-15T00:00:00Z" };
+  return { sources: [source], claims: [claim], conflicts: [], rules: [rule] };
+}
+
+function expectCode(fn: () => void, code: string): void {
+  expect(fn).toThrowError(expect.objectContaining({ code } satisfies Partial<EvidenceValidationError>));
+}
+
+describe("evidence schema and integrity validation", () => {
+  it("accepts the observed Stage 0 bundle without activating routing", () => {
+    expect(() => validateEvidence(observedEvidence, at)).not.toThrow();
+    expect(observedEvidence.claims.every((claim) => claim.state !== "approved")).toBe(true);
+    expect(observedEvidence.conflicts).toEqual(conflicts);
+  });
+
+  it("accepts an approved claim only with a current approved source and bounded rule", () => {
+    expect(() => validateEvidence(validApprovedBundle(), at)).not.toThrow();
+  });
+
+  it("rejects duplicate IDs, unknown references, and insecure URLs", () => {
+    const duplicate = validApprovedBundle();
+    duplicate.sources = [...duplicate.sources, duplicate.sources[0]];
+    expectCode(() => validateEvidence(duplicate, at), "DUPLICATE_ID");
+
+    const unknown = validApprovedBundle();
+    unknown.claims[0].sourceId = "SRC-MISSING";
+    expectCode(() => validateEvidence(unknown, at), "UNKNOWN_SOURCE");
+
+    const insecure = validApprovedBundle();
+    insecure.sources[0].canonicalUrl = "http://example.gov/source";
+    expectCode(() => validateEvidence(insecure, at), "CANONICAL_URL");
+  });
+
+  it("rejects missing locators, unbounded approvals, and blocked conflicts", () => {
+    const missingLocator = validApprovedBundle();
+    missingLocator.claims[0].locator = "";
+    expectCode(() => validateEvidence(missingLocator, at), "MISSING_FIELD");
+
+    const missingExpiry = validApprovedBundle();
+    delete missingExpiry.claims[0].expiresAt;
+    expectCode(() => validateEvidence(missingExpiry, at), "CLAIM_NOT_CURRENT");
+
+    const blocked: EvidenceBundle = validApprovedBundle();
+    const conflict: ConflictRecord = {
+      conflictId: "CONFLICT-1",
+      sourceIds: [blocked.sources[0].sourceId],
+      claimIds: [blocked.claims[0].claimId],
+      issue: "Unresolved issue",
+      affectedRuleIds: ["RULE-1"],
+      detectedAt: "2026-09-01T00:00:00Z",
+      owner: "review lead",
+      state: "open",
+      nextReviewAt: "2026-12-01T00:00:00Z",
+      auditHistory: [],
+    };
+    blocked.conflicts = [conflict];
+    blocked.claims[0].conflictIds = [conflict.conflictId];
+    expectCode(() => validateEvidence(blocked, at), "RULE_BLOCKED_CONFLICT");
+  });
+
+  it("rejects incomplete provenance and claims that outlive source review", () => {
+    const missingMethod = validApprovedBundle();
+    missingMethod.sources[0].retrievalMethod = "";
+    expectCode(() => validateEvidence(missingMethod, at), "MISSING_FIELD");
+
+    const sourceWindow = validApprovedBundle();
+    sourceWindow.claims[0].expiresAt = "2026-12-15T00:00:00Z";
+    expectCode(() => validateEvidence(sourceWindow, at), "CLAIM_SOURCE_EXPIRY");
+  });
+
+  it("rejects rules that outlive their earliest claim expiry", () => {
+    const bundle = validApprovedBundle();
+    bundle.rules![0].expiresAt = "2026-12-01T00:00:00Z";
+    expectCode(() => validateEvidence(bundle, at), "RULE_EXPIRY");
+  });
+
+  it("rejects asymmetric conflict links and duplicate rule IDs", () => {
+    const asymmetric = validApprovedBundle();
+    asymmetric.conflicts = [{
+      conflictId: "CONFLICT-1",
+      sourceIds: [asymmetric.sources[0].sourceId],
+      claimIds: [asymmetric.claims[0].claimId],
+      issue: "Unresolved issue",
+      affectedRuleIds: ["RULE-1"],
+      detectedAt: "2026-09-01T00:00:00Z",
+      owner: "review lead",
+      state: "open",
+      nextReviewAt: "2026-12-01T00:00:00Z",
+      auditHistory: [],
+    }];
+    expectCode(() => validateEvidence(asymmetric, at), "CONFLICT_CLAIM_LINK");
+
+    const duplicateRules = validApprovedBundle();
+    duplicateRules.rules = [duplicateRules.rules![0], { ...duplicateRules.rules![0] }];
+    expectCode(() => validateEvidence(duplicateRules, at), "DUPLICATE_ID");
+  });
+
+  it("rejects empty approval evidence and non-ISO timestamps", () => {
+    const emptyReviewer = validApprovedBundle();
+    emptyReviewer.claims[0].reviewer!.reviewerId = "";
+    expectCode(() => validateEvidence(emptyReviewer, at), "MISSING_FIELD");
+
+    const nonIso = validApprovedBundle();
+    nonIso.sources[0].retrievedAt = "2026-09-01";
+    expectCode(() => validateEvidence(nonIso, at), "INVALID_DATE");
+
+    const malformedUrl = validApprovedBundle();
+    malformedUrl.sources[0].canonicalUrl = "https://";
+    expectCode(() => validateEvidence(malformedUrl, at), "CANONICAL_URL");
+
+    const unapprovedHost = validApprovedBundle();
+    unapprovedHost.sources[0].canonicalUrl = "https://example.com/source";
+    expectCode(() => validateEvidence(unapprovedHost, at), "CANONICAL_URL");
+  });
+
+  it("rejects inactive applicability, terminal-date misuse, and unreviewed fallback copy", () => {
+    const futureClaim = validApprovedBundle();
+    futureClaim.claims[0].effectiveFrom = "2026-10-01T00:00:00Z";
+    expectCode(() => validateEvidence(futureClaim, at), "CLAIM_NOT_ACTIVE");
+
+    const terminalSource = validApprovedBundle();
+    terminalSource.sources[0].terminalAt = "2026-09-07T00:00:00Z";
+    expectCode(() => validateEvidence(terminalSource, at), "TERMINAL_DATE");
+
+    const fallback = validApprovedBundle();
+    fallback.conflicts = [{
+      conflictId: "CONFLICT-1",
+      sourceIds: [fallback.sources[0].sourceId],
+      claimIds: [fallback.claims[0].claimId],
+      issue: "Resolved issue",
+      affectedRuleIds: ["RULE-1"],
+      detectedAt: "2026-09-01T00:00:00Z",
+      owner: "review lead",
+      state: "resolved-objectively",
+      resolutionBasis: "Independent source comparison",
+      approver: { reviewerId: "reviewer-1", qualification: "qualified reviewer", reviewedAt: "2026-09-02T00:00:00Z", evidence: "resolution review" },
+      fallbackCopy: "Use the authority contact while this source is reviewed.",
+      nextReviewAt: "2026-12-01T00:00:00Z",
+      auditHistory: [],
+    }];
+    fallback.claims[0].conflictIds = ["CONFLICT-1"];
+    expectCode(() => validateEvidence(fallback, at), "FALLBACK_REVIEW");
+  });
+
+  it("fails closed on overdue conflict reviews and future-effective evidence", () => {
+    const resolved = validApprovedBundle();
+    resolved.conflicts = [{
+      conflictId: "CONFLICT-1",
+      sourceIds: [resolved.sources[0].sourceId],
+      claimIds: [resolved.claims[0].claimId],
+      issue: "Resolved issue",
+      affectedRuleIds: ["RULE-1"],
+      detectedAt: "2026-09-01T00:00:00Z",
+      owner: "review lead",
+      state: "resolved-objectively",
+      resolutionBasis: "Independent source comparison",
+      approver: { reviewerId: "reviewer-1", qualification: "qualified reviewer", reviewedAt: "2026-09-02T00:00:00Z", evidence: "resolution review" },
+      nextReviewAt: "2026-09-07T00:00:00Z",
+      auditHistory: [],
+    }];
+    resolved.claims[0].conflictIds = ["CONFLICT-1"];
+    expectCode(() => validateEvidence(resolved, at), "CONFLICT_REVIEW_OVERDUE");
+
+    const futureSource = validApprovedBundle();
+    futureSource.sources[0].effectiveAt = "2026-10-01T00:00:00Z";
+    expectCode(() => validateEvidence(futureSource, at), "SOURCE_NOT_CURRENT");
+
+    const futureAudit = validApprovedBundle();
+    futureAudit.conflicts = [{
+      conflictId: "CONFLICT-1",
+      sourceIds: [futureAudit.sources[0].sourceId],
+      claimIds: [futureAudit.claims[0].claimId],
+      issue: "Unresolved issue",
+      affectedRuleIds: ["RULE-1"],
+      detectedAt: "2026-09-01T00:00:00Z",
+      owner: "review lead",
+      state: "open",
+      nextReviewAt: "2026-12-01T00:00:00Z",
+      auditHistory: [{ at: "2026-09-09T00:00:00Z", actor: "review lead", action: "opened conflict", evidence: "future event" }],
+    }];
+    futureAudit.claims[0].conflictIds = ["CONFLICT-1"];
+    expectCode(() => validateEvidence(futureAudit, at), "FUTURE_DATE");
+  });
+
+  it("rejects claims outside the source profession scope", () => {
+    const bundle = validApprovedBundle();
+    bundle.sources[0].professions = ["rn-lpn"];
+    bundle.claims[0].affectedProfessions = ["electrician"];
+    expectCode(() => validateEvidence(bundle, at), "CLAIM_PROFESSION_SCOPE");
+  });
+});
