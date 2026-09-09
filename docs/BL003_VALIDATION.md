@@ -12,6 +12,8 @@
 
 `src/evidence/summary.ts` provides a deterministic developer summary of record counts and states. It has no network, telemetry, approval, source interpretation, or routing behavior.
 
+`src/evidence/drafts.ts` prepares only `observed` claims for a later human-review queue by changing their state to `needs-human-review` and removing approval-only fields. It preserves source, locator, evidence, applicability, profession, conflict, and review-window data; dead or otherwise non-observed claims are unchanged. It never creates an approved claim or routing input.
+
 ## Requirement and acceptance mapping
 
 | Requirement | Implementation/evidence |
