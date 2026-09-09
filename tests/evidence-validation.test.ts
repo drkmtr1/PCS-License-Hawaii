@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { conflicts, observedEvidence } from "../src/evidence/registry";
+import { summarizeEvidence } from "../src/evidence/summary";
 import { EvidenceValidationError, validateEvidence } from "../src/evidence/validation";
 import type { ClaimRecord, ConflictRecord, EvidenceBundle, RuleRecord, SourceRecord } from "../src/evidence/schema";
 
@@ -45,6 +46,19 @@ function expectCode(fn: () => void, code: string): void {
 }
 
 describe("evidence schema and integrity validation", () => {
+  it("summarizes registry state without approving or routing evidence", () => {
+    expect(summarizeEvidence(observedEvidence)).toEqual({
+      sourceCount: 3,
+      claimCount: 3,
+      conflictCount: 1,
+      ruleCount: 0,
+      enabledRuleCount: 0,
+      sourcesByState: { observed: 1, "needs-human-review": 1, dead: 1 },
+      claimsByState: { observed: 1, "needs-human-review": 1, dead: 1 },
+      conflictsByState: { open: 1 },
+    });
+  });
+
   it("accepts the observed Stage 0 bundle without activating routing", () => {
     expect(() => validateEvidence(observedEvidence, at)).not.toThrow();
     expect(observedEvidence.claims.every((claim) => claim.state !== "approved")).toBe(true);

@@ -10,6 +10,8 @@
 
 `src/evidence/validation.ts` rejects malformed or unsafe evidence before it can be used by a later backlog item. It checks duplicate IDs, runtime enum/array shape, HTTPS canonical URLs on the approved-host allowlist (without credentials), strict ISO timestamps, future-date misuse, required retrieval/provenance fields, source and claim review windows, reviewer evidence, source-bounded claim expiries, active applicability windows, terminal-state dates, bidirectional conflict links, unresolved-conflict fallback/approval, explicit fallback source-risk review, rule claim references, approved source/claim state, blocked conflicts, and rule expiry bounds.
 
+`src/evidence/summary.ts` provides a deterministic developer summary of record counts and states. It has no network, telemetry, approval, source interpretation, or routing behavior.
+
 ## Requirement and acceptance mapping
 
 | Requirement | Implementation/evidence |
