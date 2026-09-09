@@ -39,4 +39,4 @@ BL-003 is R2. Independent correctness and user-risk reviews are required before 
 
 **Application candidate SHA (before evidence-record follow-up):** `c1b2368d7ff71f4b109888574bc956f49ccf1717`
 **Evidence-record follow-up SHA:** pending commit  
-**Final PR head / CI:** pending review and GitHub CI
+**Final PR head / CI:** `5ba9d94f80edba26d1ab3a8b4f36eaf5039e83a0`; PR #5 merged to `main` as `5091eb1fbbc6b251cc361d1b349e37f7d1e4103e`; GitHub `validate` passed
