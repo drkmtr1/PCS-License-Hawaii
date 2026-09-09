@@ -2,10 +2,10 @@
 
 | ID | Scope | Risk | Requirements / AC | Exit evidence | Status |
 |---|---|---:|---|---|---|
-| BL-001 | Establish independent oracle, scenario set, and official-resource baseline | R2/R3 | AC-007 | source-reviewed oracle, protocol, baseline; 2 reviews + SHA gate | Blocked on foundation push; representative users may gate |
+| BL-001 | Establish evaluation-only oracle, locked coverage/methods protocol, and official-resource baseline | R2/R3 | AC-007 | evaluation-only answer key, protocol, baseline; 2 reviews + SHA gate | Protocol independently reviewed; qualified human oracle/methods approval and representative users gate completion |
 | BL-002 | Select web stack; scaffold accessible shell and CI | R1 | NFR-001–010, UX-001 | build/lint/test/a11y/privacy/expiry checks; 2 reviews + SHA gate | Ready after BL-001 |
 | BL-003 | Implement claim/source/conflict schemas and integrity validation | R2 | FR-004, FR-006–007, AC-004–005 | schema and negative tests; 2 reviews + SHA gate | Ready after BL-002 |
-| BL-004 | Split discovery summaries into atomic claims; human-review claim, fallback, and conflict records | R2/R3 | FR-004–007 | one-proposition/one-locator approved claims with expiries, conflict decisions, exact fallback copy; 2 reviews + SHA gate | Human review required for conflicts |
+| BL-004 | Convert bounded evaluation evidence into product claims; human-review claim, fallback, and conflict records | R2/R3 | FR-004–007 | one-proposition/one-locator approved routing claims with expiries, conflict decisions, exact fallback copy; 2 reviews + SHA gate | Human review required for conflicts; evaluation-only records do not activate routing |
 | BL-005 | Implement pure deterministic routing engine | R2 | FR-002–007, AC-001–005 | unit/evaluation coverage; 2 reviews + SHA gate | Ready after BL-004 |
 | BL-006 | Implement questionnaire, results, reset, escalation, trusted-time expiry/cache guards, daily source-health job, and Global Config kill switch | R2/R3 | FR-001–008, NFR-008–010, UX-001–006, AC-006, AC-008–011 | integration/a11y/privacy/viewport/clock/cache/expiry/withdrawal/kill-switch tests; 2 reviews + SHA gate | Ready after BL-005; provisioning/production authority may gate |
 | BL-007 | Run comparative representative-user evaluation | R1/R3 | AC-007 | independently adjudicated, stratified result summary; 2 reviews + SHA gate | Representative users required |
