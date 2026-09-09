@@ -14,12 +14,34 @@ export interface ClaimReviewPacket {
   items: readonly ClaimReviewPacketItem[];
 }
 
+export class ReviewPacketValidationError extends Error {
+  constructor(readonly code: "FLAGS" | "ORDER" | "APPROVED", message: string) {
+    super(`${code}: ${message}`);
+    this.name = "ReviewPacketValidationError";
+  }
+}
+
+/** Fails closed if a handoff artifact no longer has its review-only boundary. */
+export function validateClaimReviewPacket(packet: ClaimReviewPacket): void {
+  if (packet.generatedFor !== "human-review" || packet.requiresHumanApproval !== true || packet.activatesRouting !== false) {
+    throw new ReviewPacketValidationError("FLAGS", "packet must remain human-review-only and non-routable");
+  }
+  for (let index = 0; index < packet.items.length; index += 1) {
+    const item = packet.items[index];
+    if (item.state === "approved") throw new ReviewPacketValidationError("APPROVED", `approved claim ${item.claimId} is not eligible`);
+    if (index > 0 && packet.items[index - 1].claimId.localeCompare(item.claimId) > 0) {
+      throw new ReviewPacketValidationError("ORDER", "items must be sorted by claimId");
+    }
+  }
+}
+
 /**
  * Serializes a review packet for a version-controlled handoff artifact.
  * JSON output is stable because packet records are already sorted and fields are
  * constructed in a fixed order. This is serialization only, never approval data.
  */
 export function serializeClaimReviewPacket(packet: ClaimReviewPacket): string {
+  validateClaimReviewPacket(packet);
   return `${JSON.stringify(packet, null, 2)}\n`;
 }
 
