@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { conflicts, observedEvidence } from "../src/evidence/registry";
 import { summarizeEvidence } from "../src/evidence/summary";
 import { DraftPreparationError, prepareClaimReviewDrafts } from "../src/evidence/drafts";
+import { buildClaimReviewQueue } from "../src/evidence/review-queue";
 import { EvidenceValidationError, validateEvidence } from "../src/evidence/validation";
 import type { ClaimRecord, ConflictRecord, EvidenceBundle, RuleRecord, SourceRecord } from "../src/evidence/schema";
 
@@ -47,6 +48,31 @@ function expectCode(fn: () => void, code: string): void {
 }
 
 describe("evidence schema and integrity validation", () => {
+  it("builds a deterministic non-routable review queue", () => {
+    const draft = prepareClaimReviewDrafts(observedEvidence);
+    const queue = buildClaimReviewQueue(draft);
+    expect(queue.map((item) => item.claimId)).toEqual(["CLM-FED-001", "CLM-HI-PVL-001"]);
+    expect(queue[0]).toMatchObject({
+      sourceId: "SRC-FED-DOJ-001",
+      state: "needs-human-review",
+      conflictIds: ["CONFLICT-001"],
+      hasOpenConflict: true,
+    });
+    expect(queue[1]).toMatchObject({
+      sourceId: "SRC-HI-PVL-001",
+      state: "needs-human-review",
+      conflictIds: [],
+      hasOpenConflict: false,
+    });
+    expect(queue.every((item) => item.state !== "approved")).toBe(true);
+
+    const unknownConflict = { ...draft, claims: draft.claims.map((claim, index) => index === 0 ? { ...claim, conflictIds: ["CONFLICT-MISSING"] } : claim) };
+    const unknownQueue = buildClaimReviewQueue(unknownConflict);
+    const unknownItem = unknownQueue.find((item) => item.claimId === "CLM-HI-PVL-001");
+    expect(unknownItem?.conflicts).toEqual([{ conflictId: "CONFLICT-MISSING", state: "unknown" }]);
+    expect(unknownItem?.hasOpenConflict).toBe(true);
+  });
+
   it("prepares observed claims for review without approving or routing them", () => {
     const draft = prepareClaimReviewDrafts(observedEvidence);
     expect(draft.claims[0].state).toBe("needs-human-review");
