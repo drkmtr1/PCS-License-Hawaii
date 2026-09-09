@@ -16,6 +16,8 @@
 
 `src/evidence/review-queue.ts` creates a stable, sorted manifest of non-terminal draft claims with their recorded source/conflict IDs, states, professions, review dates, and open-conflict flags. It is a work queue only; it cannot approve, interpret, or route a claim.
 
+`src/evidence/review-packet.ts` creates a deterministic, evidence-preserving packet from that queue. It includes recorded source provenance, proposition/locator/evidence/applicability fields, and linked conflict details for qualified human inspection. The packet is explicitly marked `requiresHumanApproval: true` and `activatesRouting: false`; it never interprets authority, adds approval evidence, or enables a rule.
+
 ## Requirement and acceptance mapping
 
 | Requirement | Implementation/evidence |

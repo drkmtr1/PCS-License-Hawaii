@@ -3,6 +3,7 @@ import { conflicts, observedEvidence } from "../src/evidence/registry";
 import { summarizeEvidence } from "../src/evidence/summary";
 import { DraftPreparationError, prepareClaimReviewDrafts } from "../src/evidence/drafts";
 import { buildClaimReviewQueue } from "../src/evidence/review-queue";
+import { buildClaimReviewPacket } from "../src/evidence/review-packet";
 import { EvidenceValidationError, validateEvidence } from "../src/evidence/validation";
 import type { ClaimRecord, ConflictRecord, EvidenceBundle, RuleRecord, SourceRecord } from "../src/evidence/schema";
 
@@ -71,6 +72,21 @@ describe("evidence schema and integrity validation", () => {
     const unknownItem = unknownQueue.find((item) => item.claimId === "CLM-HI-PVL-001");
     expect(unknownItem?.conflicts).toEqual([{ conflictId: "CONFLICT-MISSING", state: "unknown" }]);
     expect(unknownItem?.hasOpenConflict).toBe(true);
+  });
+
+  it("builds an evidence-preserving packet without approval or routing", () => {
+    const packet = buildClaimReviewPacket(prepareClaimReviewDrafts(observedEvidence));
+    expect(packet).toMatchObject({ generatedFor: "human-review", requiresHumanApproval: true, activatesRouting: false });
+    expect(packet.items.map((item) => item.claimId)).toEqual(["CLM-FED-001", "CLM-HI-PVL-001"]);
+    expect(packet.items[0]).toMatchObject({
+      source: { canonicalUrl: "https://www.justice.gov/servicemembers/professional-license-portability" },
+      claim: { proposition: expect.any(String), locator: expect.any(String), evidence: expect.any(String) },
+      conflictDetails: [{ issue: expect.any(String), affectedRuleIds: [] }],
+    });
+    expect(packet.items.every((item) => item.state !== "approved")).toBe(true);
+    const missingConflict = prepareClaimReviewDrafts(observedEvidence);
+    missingConflict.claims[0].conflictIds = ["CONFLICT-MISSING"];
+    expect(() => buildClaimReviewPacket(missingConflict)).toThrow("missing conflict");
   });
 
   it("prepares observed claims for review without approving or routing them", () => {
