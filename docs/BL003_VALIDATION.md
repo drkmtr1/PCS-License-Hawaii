@@ -20,6 +20,8 @@
 
 `serializeClaimReviewPacket` emits the packet as stable, pretty-printed JSON with a trailing newline for a version-controlled handoff artifact. It serializes only; it does not persist applicant answers, approve claims, or create routing input.
 
+`validateClaimReviewPacket` fails closed before serialization if the human-review/non-routing flags are altered, an approved claim appears, or claim IDs are no longer sorted deterministically. This protects the handoff artifact without creating an approval or routing path.
+
 ## Requirement and acceptance mapping
 
 | Requirement | Implementation/evidence |
