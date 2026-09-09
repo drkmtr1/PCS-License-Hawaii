@@ -4,7 +4,7 @@
 
 ## Current stage
 
-Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review and is synchronized to GitHub. The committed BL-001 protocol candidate and study-material templates passed independent correctness/methodology and source/user-risk review. BL-001 remains incomplete and its representative-user work is deferred to the pre-release gate; BL-002 may begin only as a neutral, non-routable shell with no licensing claims, authority contacts, questionnaire decisions, or user-facing licensing guidance. Licensing claims remain unapproved and non-routable.
+Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review and is synchronized to GitHub. The committed BL-001 protocol candidate and study-material templates passed independent correctness/methodology and source/user-risk review. BL-001 remains incomplete and its representative-user work is deferred to the pre-release gate. BL-002's neutral shell/CI candidate is implemented and locally validated, pending independent review and merge; it contains no licensing claims, authority contacts, questionnaire decisions, or user-facing licensing guidance. Licensing claims remain unapproved and non-routable.
 
 ## Current gate
 
@@ -19,7 +19,7 @@ The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants thi
 
 ## Next action
 
-Implement BL-002's neutral accessible shell and CI. Do not start participant sessions, activate routing, or make usability/performance claims. Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before BL-007/BL-008/release. Product claim/conflict approval remains BL-004.
+Complete independent review and merge BL-002's neutral accessible shell and CI. Do not start participant sessions, activate routing, or make usability/performance claims. Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before BL-007/BL-008/release. Product claim/conflict approval remains BL-004.
 
 ## Human review queue
 
