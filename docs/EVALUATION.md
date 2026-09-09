@@ -115,8 +115,11 @@ BL-001 cannot complete until the repository contains or links to:
 - accessible/translated consent, facilitator, stop-at-destination, and no-reliance debrief materials;
 - data-security/retention/suppression plan;
 - blank score sheet and adjudication rules;
+- a restricted condition-allocation key kept outside the public repository, plus condition-free scorer copies and a documented masking exception/sensitivity plan where needed;
 - aggregate baseline results with sample sizes and exclusions;
 - two independent reviews and deterministic gate evidence bound to the candidate SHA.
+
+Repository templates for these artifacts live in `docs/evaluation/`. They remain drafts until the qualified human roles complete and approve them.
 
 ## Human-only gates
 

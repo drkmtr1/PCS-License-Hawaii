@@ -4,7 +4,7 @@
 
 ## Current stage
 
-Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review and is synchronized to GitHub. The BL-001 protocol candidate passed both independent reviews with no unresolved P0/P1/P2 findings on `bl-001-evaluation-oracle`. Licensing claims remain unapproved and non-routable.
+Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review and is synchronized to GitHub. The committed BL-001 protocol candidate and study-material templates passed independent correctness/methodology and source/user-risk review. Licensing claims remain unapproved and non-routable.
 
 ## Current gate
 
@@ -19,7 +19,7 @@ The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants thi
 
 ## Next action
 
-Push the reviewed BL-001 protocol candidate. Then obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before feature implementation. Product claim/conflict approval remains BL-004.
+Push the independently reviewed BL-001 study-material templates. Then obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before feature implementation. Product claim/conflict approval remains BL-004.
 
 ## Human review queue
 
