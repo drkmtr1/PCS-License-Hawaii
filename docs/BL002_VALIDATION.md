@@ -1,6 +1,7 @@
 # BL-002 validation record
 
-**Candidate SHA:** Recorded in the pull request head and review evidence; this record is committed with that candidate.  
+**Application candidate SHA (before this evidence-record commit):** 7086bab221f00e52f2a2e5252616821630261122
+**Evidence record:** This document is committed immediately after the application candidate; the pull request head contains both commits.
 **Scope:** Neutral, non-routable shell and CI only.
 
 ## Deterministic checks
