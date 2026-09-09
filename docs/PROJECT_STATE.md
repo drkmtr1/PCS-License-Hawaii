@@ -8,7 +8,7 @@ Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentat
 
 ## Current gate
 
-The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants this account push/admin access, and uses `main` as its default branch. Foundation delivery was recorded on `main` at `833af63`. BL-001 cannot complete without qualified human evaluation-oracle/source review, evaluation-methods approval, and representative-user baseline sessions. Evaluation-only evidence cannot activate product routing.
+The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants this account push/admin access, and uses `main` as its default branch. Foundation delivery was recorded on `main` at `833af63`; the reviewed BL-001 protocol and study-material templates were squash-merged to `main` at `9818fe6`. BL-001 cannot complete without qualified human evaluation-oracle/source review, evaluation-methods approval, and representative-user baseline sessions. Evaluation-only evidence cannot activate product routing.
 
 ## Decisions
 
@@ -19,7 +19,7 @@ The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants thi
 
 ## Next action
 
-Push the independently reviewed BL-001 study-material templates. Then obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before feature implementation. Product claim/conflict approval remains BL-004.
+Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before feature implementation. Product claim/conflict approval remains BL-004.
 
 ## Human review queue
 
