@@ -44,7 +44,7 @@ RN/LPN and mental health counseling have explicit state temporary military-spous
 
 ## Baseline plan
 
-Before feature implementation, an independent source reviewer defines four scenario packets and a source-backed oracle. Give representative users only the official-source starting links. Record task completion, elapsed time, pathway/source selected, unsupported claims, escalation, provenance comprehension, and observed friction. Counterbalance and repeat with PCS License Hawaiʻi using the same rubric. Do not claim comparative success until representative-user results exist.
+Before representative-user evaluation and release, an independent source reviewer defines four scenario packets and a source-backed oracle. Give representative users only the official-source starting links. Record task completion, elapsed time, pathway/source selected, unsupported claims, escalation, provenance comprehension, and observed friction. Counterbalance and repeat with PCS License Hawaiʻi using the same rubric. A non-routable application shell and CI may be implemented first; do not claim comparative success until representative-user results exist.
 
 ## GO conditions
 

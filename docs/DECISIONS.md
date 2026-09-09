@@ -31,3 +31,9 @@ Bounded human-authored explanations can satisfy the measurable task with lower u
 **Status:** Accepted for design; provisioning remains a human permission/cost gate, 2026-09-07.
 
 The content-deployment path cannot safely disable itself if withdrawal/redeploy fails. A single server-read `routingEnabled` value in Vercel Global Config (formerly Edge Config) provides a low-latency maintenance switch updateable without redeployment. It stores no applicant or source data. Read failure disables routing; writes are restricted, audited, and unavailable to clients. This is the only V1 persistent runtime configuration justified beyond version-controlled files.
+
+## ADR-006 — Defer BL-001 representative-user work to the pre-release gate
+
+**Status:** Accepted by project owner, 2026-09-08.
+
+BL-001's qualified human oracle/methods review and representative-user baseline remain required before BL-007 comparative evaluation or release. They no longer block BL-002's non-routable accessible shell and CI. This change does not authorize routing, licensing claims, source interpretation, application eligibility determinations, or deployment; those remain separately gated by approved claim records and source/conflict review.
