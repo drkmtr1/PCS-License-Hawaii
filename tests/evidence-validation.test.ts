@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { conflicts, observedEvidence } from "../src/evidence/registry";
 import { summarizeEvidence } from "../src/evidence/summary";
+import { DraftPreparationError, prepareClaimReviewDrafts } from "../src/evidence/drafts";
 import { EvidenceValidationError, validateEvidence } from "../src/evidence/validation";
 import type { ClaimRecord, ConflictRecord, EvidenceBundle, RuleRecord, SourceRecord } from "../src/evidence/schema";
 
@@ -46,6 +47,22 @@ function expectCode(fn: () => void, code: string): void {
 }
 
 describe("evidence schema and integrity validation", () => {
+  it("prepares observed claims for review without approving or routing them", () => {
+    const draft = prepareClaimReviewDrafts(observedEvidence);
+    expect(draft.claims[0].state).toBe("needs-human-review");
+    expect(draft.claims[0].reviewer).toBeUndefined();
+    expect(draft.claims[0].expiresAt).toBeUndefined();
+    expect(draft.claims[0].conflictIds).toEqual(observedEvidence.claims[0].conflictIds);
+    expect(draft.claims[2].state).toBe("dead");
+    expect(() => validateEvidence(draft, at)).not.toThrow();
+    expect(observedEvidence.claims[0].state).toBe("observed");
+  });
+
+  it("rejects draft conversion when an observed claim has no review date", () => {
+    const incomplete = { ...observedEvidence, claims: observedEvidence.claims.map((claim, index) => index === 0 ? { ...claim, nextReviewAt: undefined } : claim) };
+    expect(() => prepareClaimReviewDrafts(incomplete)).toThrowError(expect.objectContaining({ code: "MISSING_REVIEW_DATE" } satisfies Partial<DraftPreparationError>));
+  });
+
   it("summarizes registry state without approving or routing evidence", () => {
     expect(summarizeEvidence(observedEvidence)).toEqual({
       sourceCount: 3,
