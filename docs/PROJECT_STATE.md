@@ -4,7 +4,7 @@
 
 ## Current stage
 
-Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review and is synchronized to GitHub. BL-001 remains incomplete and its representative-user work is deferred to the pre-release gate. BL-002's neutral shell/CI is merged. BL-003's isolated evidence schemas and validator are now the active candidate; observed records remain non-routable and contain no approved product claims. Licensing claims remain unapproved and non-routable.
+Stage 0 complete: **GO**, bounded and conditional. Stage 1 repository documentation passed independent correctness and source/user-risk review and is synchronized to GitHub. BL-001 remains incomplete and its representative-user work is deferred to the pre-release gate. BL-002's neutral shell/CI and BL-003's isolated evidence schemas/validator are merged. Observed records remain non-routable and contain no approved product claims. Licensing claims remain unapproved and non-routable.
 
 ## Current gate
 
@@ -19,7 +19,7 @@ The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants thi
 
 ## Next action
 
-Complete independent review and merge BL-003's evidence schemas and validator. Do not start participant sessions, activate routing, or make usability/performance claims. Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before BL-007/BL-008/release. Product claim/conflict approval remains BL-004.
+BL-004 is the next eligible implementation, but qualified human source/claim review must approve the initial claim locators, conflict disposition, fallback copy, and expiries before any product claim can route. Do not start participant sessions, activate routing, or make usability/performance claims. Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before BL-007/BL-008/release.
 
 ## Human review queue
 
