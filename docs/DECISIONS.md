@@ -37,3 +37,9 @@ The content-deployment path cannot safely disable itself if withdrawal/redeploy 
 **Status:** Accepted by project owner, 2026-09-08.
 
 BL-001's qualified human oracle/methods review and representative-user baseline remain required before BL-007 comparative evaluation or release. They no longer block BL-002's non-routable accessible shell and CI. This change does not authorize routing, licensing claims, source interpretation, application eligibility determinations, or deployment; those remain separately gated by approved claim records and source/conflict review.
+
+## ADR-007 — Use a neutral Next.js shell for BL-002
+
+**Status:** Accepted for BL-002, 2026-09-08.
+
+Use the Next.js App Router with TypeScript, a minimal server-rendered page, no runtime data store, and repository CI. BL-002 is limited to an accessible non-guidance shell and validation plumbing. It must not expose licensing claims, source records, routes, contacts, questionnaire decisions, or authorization language beyond the explicit no-guidance boundary. Routing and source behavior remain gated by BL-003 through BL-006.

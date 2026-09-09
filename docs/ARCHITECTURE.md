@@ -10,7 +10,7 @@ Runtime AI is also not justified for V1. Plain-language copy can be human-review
 
 ## Logical components
 
-1. Accessible questionnaire UI.
+1. BL-002 neutral accessible shell; the future questionnaire UI remains gated by approved claims and routing work.
 2. Validated source registry.
 3. Validated deterministic rules.
 4. Pure routing function returning structured navigation results.
@@ -18,6 +18,10 @@ Runtime AI is also not justified for V1. Plain-language copy can be human-review
 6. Build-time integrity checks and automated tests.
 7. Server and client safety guards: the server controls document/data caching, supplies a trusted evaluation timestamp/TTL, and checks every request. The client uses monotonic elapsed time, checks before every routing/result action, and invalidates on timer, visibility/pageshow resume, discontinuity, or inability to revalidate.
 8. A minimal Vercel Global Config `routingEnabled` kill switch, read server-side on every request and polled by loaded clients, disables all routing without a content deployment. Global Config is configuration only—not applicant storage.
+
+## BL-002 implementation boundary
+
+The initial Next.js App Router implementation is a static server-rendered shell with TypeScript, no runtime data store, no client state, no external links, and no routing behavior. It communicates only that the prototype is unavailable and cannot provide licensing advice or determine authorization. The CI contract runs typecheck, lint, policy tests, production dependency audit, and a production build. Source registries, claims, rules, contacts, questionnaire decisions, and result pathways are intentionally absent until their approved backlog items are eligible.
 
 ## Data boundaries
 

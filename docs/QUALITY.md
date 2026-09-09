@@ -19,6 +19,10 @@
 
 Before participant sessions, an independent source reviewer establishes the source-backed evaluation oracle, scenario allocation, recruitment minima, subgroup pass/escalation rules, and safety materials. Before public guidance, usability/performance claims, and release, the representative-user baseline is also required. This does not block BL-002's neutral, non-routable shell and CI. The protocol must include all profession/route/military-relationship groups and users facing screen-reader/keyboard, limited-English or low-literacy, weak-connectivity, small-screen, and PDF-access barriers. If a group cannot be recruited at the protocol's minimum, document the exclusion and prohibit broad usability/accessibility claims for that group. Before release, run ordinary routes, military-spouse routes, federal portability review, missing answers, stale/dead sources, conflict, and unsupported professions. Each case declares expected evidence, allowed pathways, required escalation, and forbidden authorization claims. BL-001 uses a baseline-only cohort; BL-007 uses a fresh randomized parallel cohort with matched scenario variants and independent adjudication.
 
+## BL-002 accessibility validation scope
+
+The BL-002 shell has no links, buttons, inputs, or other application controls, so there is no keyboard interaction path to exercise and no dynamic state to announce. Its bounded validation is a rendered browser check of the home page and neutral not-found page, plus deterministic assertions for `lang`, heading/landmark structure, focus-visible styling, reduced-motion handling, and the required security/privacy boundary. The exact check is recorded in the BL-002 pull request. Full rendered WCAG 2.2 AA automation, keyboard-only flow, reflow/contrast review, and manual screen-reader checks remain mandatory when interactive guidance is introduced and are release-gated by BL-008; this exception does not waive NFR-005/AC-006 for later work.
+
 ## Release thresholds
 
 - 100% required automated checks pass.
