@@ -18,6 +18,8 @@
 
 `src/evidence/review-packet.ts` creates a deterministic, evidence-preserving packet from that queue. It includes recorded source provenance, proposition/locator/evidence/applicability fields, and linked conflict details for qualified human inspection. The packet is explicitly marked `requiresHumanApproval: true` and `activatesRouting: false`; it never interprets authority, adds approval evidence, or enables a rule.
 
+`serializeClaimReviewPacket` emits the packet as stable, pretty-printed JSON with a trailing newline for a version-controlled handoff artifact. It serializes only; it does not persist applicant answers, approve claims, or create routing input.
+
 ## Requirement and acceptance mapping
 
 | Requirement | Implementation/evidence |

@@ -3,7 +3,7 @@ import { conflicts, observedEvidence } from "../src/evidence/registry";
 import { summarizeEvidence } from "../src/evidence/summary";
 import { DraftPreparationError, prepareClaimReviewDrafts } from "../src/evidence/drafts";
 import { buildClaimReviewQueue } from "../src/evidence/review-queue";
-import { buildClaimReviewPacket } from "../src/evidence/review-packet";
+import { buildClaimReviewPacket, serializeClaimReviewPacket } from "../src/evidence/review-packet";
 import { EvidenceValidationError, validateEvidence } from "../src/evidence/validation";
 import type { ClaimRecord, ConflictRecord, EvidenceBundle, RuleRecord, SourceRecord } from "../src/evidence/schema";
 
@@ -87,6 +87,9 @@ describe("evidence schema and integrity validation", () => {
     const missingConflict = prepareClaimReviewDrafts(observedEvidence);
     missingConflict.claims[0].conflictIds = ["CONFLICT-MISSING"];
     expect(() => buildClaimReviewPacket(missingConflict)).toThrow("missing conflict");
+    const serialized = serializeClaimReviewPacket(packet);
+    expect(serialized.endsWith("\n")).toBe(true);
+    expect(JSON.parse(serialized)).toEqual(packet);
   });
 
   it("prepares observed claims for review without approving or routing them", () => {
