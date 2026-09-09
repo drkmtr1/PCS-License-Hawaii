@@ -6,7 +6,7 @@ The application is navigation support, not a licensing decision. Only the releva
 
 ## Current status
 
-Stage 0 discovery supports a cautious **GO** for a bounded V1 covering RN/LPN, mental health counselor, electrician, and real estate salesperson/broker. The reviewed Stage 1 foundation is synchronized to the public GitHub `main` branch at commit `f18c7bd`. BL-001 evaluation-oracle and baseline work is next; observed licensing claims remain non-routable pending approval.
+Stage 0 discovery supports a cautious **GO** for a bounded V1 covering RN/LPN, mental health counselor, electrician, and real estate salesperson/broker. The reviewed Stage 1 foundation is synchronized to the public GitHub `main` branch. BL-001 evaluation-oracle and baseline work remains required before release, but no longer blocks the non-routable application foundation; observed licensing claims remain non-routable pending approval.
 
 See [PROJECT_STATE.md](docs/PROJECT_STATE.md), [PRODUCT.md](docs/PRODUCT.md), and [SOURCE_PROVENANCE.md](docs/SOURCE_PROVENANCE.md).
 
@@ -21,4 +21,4 @@ See [PROJECT_STATE.md](docs/PROJECT_STATE.md), [PRODUCT.md](docs/PRODUCT.md), an
 
 ## Development
 
-The application stack will be selected in BL-002 after the source-backed oracle and baseline work in BL-001. Until then, repository documents are authoritative only for project implementation, not as legal or licensing authority.
+The application stack is selected in BL-002. BL-001 representative-user work is a pre-release evaluation requirement, not a prerequisite for non-routable foundation implementation. Repository documents are authoritative only for project implementation, not as legal or licensing authority.
