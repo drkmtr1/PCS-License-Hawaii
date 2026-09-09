@@ -14,3 +14,7 @@
 | BL-010 | V1 retrospective and maintenance handoff | R0 | product definition of done | retrospective document | Ready after production |
 
 Deferred: accounts, uploads, saved profiles, submissions, CMS, database, runtime AI, comprehensive/semantic source monitoring beyond required link/fingerprint health checks, all-profession/nationwide coverage, and native mobile.
+
+## Execution policy
+
+The backlog has a continuous build track. Neutral UI, non-routable schemas, validation, tests, CI, documentation, accessibility/security plumbing, and other credential-free work may proceed without waiting for human approval. The protected review gate is triggered only when a change interprets source authority, approves or routes a product claim, starts participant sessions, makes a usability/performance claim, or prepares production release. BL-004 may be scaffolded, but its claim records remain non-routable until the required qualified review is recorded.

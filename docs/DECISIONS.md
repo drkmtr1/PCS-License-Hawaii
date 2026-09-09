@@ -43,3 +43,9 @@ BL-001's qualified human oracle/methods review and representative-user baseline 
 **Status:** Accepted for BL-002, 2026-09-08.
 
 Use the Next.js App Router with TypeScript, a minimal server-rendered page, no runtime data store, and repository CI. BL-002 is limited to an accessible non-guidance shell and validation plumbing. It must not expose licensing claims, source records, routes, contacts, questionnaire decisions, or authorization language beyond the explicit no-guidance boundary. Routing and source behavior remain gated by BL-003 through BL-006.
+
+## ADR-008 — Continuous build track with protected source and release gates
+
+**Status:** Accepted for development workflow, 2026-09-09.
+
+Credential-free implementation may continue without waiting for human approval when it is neutral, non-routable, and independently testable. This includes UI scaffolding, evidence validation, tests, CI, documentation, accessibility/security plumbing, and privacy safeguards. Human review remains required only for source-authority interpretation, approval of product claims or conflicts, routing activation, participant sessions, public usability/performance conclusions, and production release. This keeps development moving without weakening the fail-closed source and release boundaries.

@@ -21,4 +21,4 @@ See [PROJECT_STATE.md](docs/PROJECT_STATE.md), [PRODUCT.md](docs/PRODUCT.md), an
 
 ## Development
 
-The application stack is selected in BL-002. BL-001 representative-user work is a pre-release evaluation requirement, not a prerequisite for non-routable foundation implementation. Repository documents are authoritative only for project implementation, not as legal or licensing authority.
+The application stack is selected in BL-002. The continuous build track allows credential-free neutral UI, validation, tests, CI, documentation, and accessibility/security plumbing to proceed without waiting for human approval. BL-001 representative-user work and qualified source/claim review remain protected pre-release/routing gates; they are not prerequisites for non-routable foundation implementation. Repository documents are authoritative only for project implementation, not as legal or licensing authority.

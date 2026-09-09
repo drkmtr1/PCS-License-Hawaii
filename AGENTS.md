@@ -9,6 +9,10 @@ Read `docs/PROJECT_STATE.md`, then the relevant files in `docs/` before changing
 - Treat routing/source changes as at least R2; unresolved source-authority interpretation is R3. Require independent correctness and user-risk reviews.
 - Do not begin feature implementation until the Stage 1 foundation is pushed to the verified GitHub repository.
 
+## Continuous build mode
+
+Credential-free implementation may continue without waiting for a human review when the work is limited to neutral UI, non-routable schemas, tests, CI, documentation, accessibility/security plumbing, or other behavior that cannot interpret authority, activate routing, claim authorization, start participant sessions, or make release/usability claims. Human review remains a protected gate only for those source/routing/release decisions; missing credentials, permissions, billing, or other external access are the other normal blockers.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

@@ -123,4 +123,6 @@ Repository templates for these artifacts live in `docs/evaluation/`. They remain
 
 ## Human-only gates
 
+These gates do not stop the continuous build track. Neutral implementation, tests, CI, documentation, and non-routable validation may continue while the evaluation artifacts remain pending.
+
 Qualified evaluation-oracle review, source/legal handling of CONFLICT-001, and later product-claim approval cannot be simulated. Representative-user participation, informed consent, accessibility/language accommodations, and conclusions about real user performance also require human involvement. BL-001 does not block implementation of a neutral, non-routable application shell and CI. Its qualified oracle/protocol approval, locked materials, consent, and safety arrangements must complete before any participant session; its baseline sessions/results must complete before BL-007 comparative evaluation, public guidance or performance claims, BL-008, and release. Evaluation-only evidence never activates routing.

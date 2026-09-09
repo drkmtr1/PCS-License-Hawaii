@@ -2,6 +2,8 @@
 
 ## V1 posture
 
+Security and privacy plumbing may be implemented and tested continuously without waiting for source/routing approval. Source-backed behavior and production release remain protected gates; no credential or permission is assumed by the continuous build track.
+
 - Collect no account credentials, uploaded documents, free text, SSNs, license numbers, or copies of military orders.
 - Keep structured questionnaire answers in component memory only; application code may not write them to URLs, storage, cookies, telemetry, error payloads, controlled logs, or outbound referrers.
 - Treat source content and URLs as reviewed data; never execute retrieved content.
