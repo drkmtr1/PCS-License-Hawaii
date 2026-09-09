@@ -37,6 +37,6 @@ Expected evidence for this candidate is a passing focused suite and passing type
 
 BL-003 is R2. Independent correctness and user-risk reviews are required before merge. Reviewers must confirm that the validator enforces integrity only, that observed/evaluation-only records remain non-routable, and that no source-authority interpretation or authorization claim has been introduced.
 
-**Application candidate SHA (before evidence-record follow-up):** pending commit  
+**Application candidate SHA (before evidence-record follow-up):** `c1b2368d7ff71f4b109888574bc956f49ccf1717`
 **Evidence-record follow-up SHA:** pending commit  
 **Final PR head / CI:** pending review and GitHub CI
