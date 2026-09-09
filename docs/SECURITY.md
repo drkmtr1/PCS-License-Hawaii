@@ -6,7 +6,7 @@
 - Keep structured questionnaire answers in component memory only; application code may not write them to URLs, storage, cookies, telemetry, error payloads, controlled logs, or outbound referrers.
 - Treat source content and URLs as reviewed data; never execute retrieved content.
 - Validate source/rule schemas and constrain all inputs by type, enum, and length.
-- Use secure response headers, dependency review, secret scanning, and privacy-safe error messages.
+- Use secure response headers, dependency review, secret scanning, and privacy-safe error messages. BL-002 CI includes a deterministic tracked-file credential policy check; a full production secret scanner remains required at BL-008.
 - Never expose privileged service credentials to client code.
 
 ## Threats and controls
