@@ -25,6 +25,8 @@ The initial Next.js App Router implementation is a static server-rendered shell 
 
 BL-003 adds an isolated, version-controlled evidence registry and validator. It enforces atomic source/claim/conflict references, HTTPS canonical URLs on the approved-host allowlist, freshness/applicability/terminal dates, approval evidence and expiry, conflict blocking, and rule expiry bounds. The application shell does not import this registry; an observed or evaluation-only record never activates routing.
 
+The continuous build track permits further neutral scaffolding and validation without human approval. Source interpretation, approved claim conversion, routing activation, participant evaluation, and release remain on the protected track.
+
 ## Data boundaries
 
 Questionnaire answers remain in component memory only. Application code must not place them in URLs, browser storage, cookies, telemetry, error payloads, controlled logs, or outbound referrers. A visible reset clears answers; form restoration/autofill is disabled where practical. Lifecycle tests cover reload, back/forward cache, tab close/reopen, and shared-device reset while acknowledging browser-controlled crash/session restoration cannot be guaranteed. Hosting still receives ordinary access metadata, which the privacy notice and verified host configuration must disclose. Analytics are off by default and require separate privacy approval.

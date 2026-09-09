@@ -13,6 +13,8 @@ The hierarchy is a research and citation priority, not an automatic legal-preced
 
 No software component may decide which conflicting authority legally controls unless explicit supersession is objectively documented and human-approved.
 
+Source records may be collected, fingerprinted, validated, and kept non-routable during continuous development without human approval. Human approval remains required before source interpretation becomes an approved product claim or routing input.
+
 ## Required records
 
 A **source record** contains `sourceId`, authority, title, canonical URL, source type, profession, jurisdiction, retrieval date/method, publication/effective date when stated, accessibility/format, content fingerprint, next-review/expiry date, owner, and source state.

@@ -1,5 +1,9 @@
 # Quality
 
+## Continuous build mode
+
+Quality work does not wait for the protected source/routing gate. The team may implement and run neutral UI checks, schema validation, unit tests, CI, accessibility/security plumbing, and privacy safeguards continuously without human approval. Human review is required only when results could interpret authority, activate source-backed routing, start participant sessions, support public usability/performance claims, or release the product.
+
 ## Test layers
 
 - Schema and referential-integrity tests for sources and rules.

@@ -4,6 +4,10 @@
 
 Vercel is the preferred host if the selected web stack remains compatible. GitHub integration should create an immutable preview for each pull request. Production must promote the exact reviewed preview artifact rather than rebuild an unreviewed candidate.
 
+## Continuous build mode
+
+Local and preview implementation may continue without human approval while it remains credential-free and non-routable. Neutral UI, tests, CI, documentation, accessibility/security plumbing, and evidence validation can be built and merged continuously. The required gates below apply before source-backed routing, participant sessions, public usability/performance claims, or production release. Credentials, permissions, billing, and external service provisioning may still stop work.
+
 ## Required gates
 
 1. Candidate SHA is stable.

@@ -1,6 +1,6 @@
 # Project state
 
-**Updated:** 2026-09-08
+**Updated:** 2026-09-09
 
 ## Current stage
 
@@ -17,9 +17,13 @@ The GitHub connector verified `drkmtr1/PCS-License-Hawaii` is public, grants thi
 - No runtime AI.
 - No accounts, uploads, or stored questionnaire answers.
 
+## Build mode
+
+Credential-free neutral work continues without waiting for human approval: UI scaffolding, non-routable data validation, tests, CI, documentation, and accessibility/security plumbing are all allowed on the continuous build track. The protected gate applies only when work would interpret source authority, approve product claims, activate routing, start participant sessions, make usability/performance claims, or release to production. No external credentials are currently required for this track.
+
 ## Next action
 
-BL-004 is the next eligible implementation, but qualified human source/claim review must approve the initial claim locators, conflict disposition, fallback copy, and expiries before any product claim can route. Do not start participant sessions, activate routing, or make usability/performance claims. Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before BL-007/BL-008/release.
+Continue credential-free neutral implementation on the continuous build track. BL-004 claim conversion may be prepared but cannot activate product claims until qualified human source/claim review approves initial locators, conflict disposition, fallback copy, and expiries. Do not start participant sessions, activate routing, or make usability/performance claims. Obtain qualified source/evaluation-methods approval, lock the evaluation-only oracle/coverage/recruitment plan, and run baseline-only representative-user sessions before BL-007/BL-008/release.
 
 ## Human review queue
 
